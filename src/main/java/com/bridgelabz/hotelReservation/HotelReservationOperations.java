@@ -111,7 +111,12 @@ public class HotelReservationOperations {
             if (hotel.get(i).getLoyalCustomerWeekDays() + hotel.get(i).getLoyalCustomerWeekEndDays() < cheapestRate) {
                 cheapestRate = hotel.get(i).getLoyalCustomerWeekDays() + hotel.get(i).getLoyalCustomerWeekEndDays();
                 index = i;
-
+            }
+else if (hotel.get(i).getLoyalCustomerWeekDays() + hotel.get(i).getLoyalCustomerWeekEndDays() == cheapestRate) {
+                    if (hotel.get(i).getRatings() > hotel.get(index).getRatings()) {
+                        cheapestRate = hotel.get(i).getLoyalCustomerWeekDays() + hotel.get(i).getLoyalCustomerWeekEndDays();
+                        index = i;
+                    }
             }
         }
 
