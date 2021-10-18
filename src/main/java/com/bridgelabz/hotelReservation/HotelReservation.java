@@ -24,6 +24,8 @@ public class HotelReservation {
                     System.out.println("Enter the name of hotel");
                     String name = scanner.next();
 
+
+
                     System.out.println("Enter the week days rate of hotel");
                     int weekRate = scanner.nextInt();
                     System.out.println("Enter the weekend days rate of hotel");
