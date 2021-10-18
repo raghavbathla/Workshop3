@@ -6,45 +6,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class HotelReservation {
-    static String hotelName;
-    static long cheapestPrice;
 
-    static void cheapestHotel(ArrayList<Hotel> hotel) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the checkIn date");
-        System.out.println("Enter the date");
-        int d = scanner.nextInt();
-        System.out.println("Enter the month");
-        int m = scanner.nextInt();
-        System.out.println("Enter the year");
-        int y = scanner.nextInt();
-        LocalDate checkIn = LocalDate.of(y, m, d);
-
-
-        System.out.println("Enter the checkOut date");
-        System.out.println("Enter the date");
-        int dco = scanner.nextInt();
-        System.out.println("Enter the month");
-        int mo = scanner.nextInt();
-        System.out.println("Enter the year");
-        int yo = scanner.nextInt();
-        LocalDate checkOut = LocalDate.of(yo, mo, dco);
-        long numDays = ChronoUnit.DAYS.between(checkIn, checkOut);
-        int index = 0;
-        int cheapestRate = hotel.get(0).getRates();
-        for (int i = 0; i < hotel.size(); i++) {
-            if (hotel.get(i).getRates() < cheapestRate) {
-                cheapestRate = hotel.get(i).getRates();
-                index = i;
-            }
-        }
-        System.out.println(index+"index");
-        hotelName = hotel.get(index).getName();
-        cheapestPrice = hotel.get(index).getRates() * numDays;
-
-    }
 
     public static void main(String[] args) {
+        HotelReservationOperations hotelOps = new HotelReservationOperations();
         boolean operation = true;
         ArrayList<Hotel> hotels = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
@@ -58,20 +23,23 @@ public class HotelReservation {
                 case 1:
                     System.out.println("Enter the name of hotel");
                     String name = scanner.next();
-                    System.out.println("Enter the rate of hotel");
-                    int rate = scanner.nextInt();
-                    hotels.add(new Hotel(name, rate));
+
+                    System.out.println("Enter the week days rate of hotel");
+                    int weekRate = scanner.nextInt();
+                    System.out.println("Enter the weekend days rate of hotel");
+                    int weekEnd = scanner.nextInt();
+                    hotels.add(new Hotel(name, weekRate,weekEnd));
                     scanner.nextLine();
                     break;
                 case 2:
                     for (int i = 0; i < hotels.size(); i++) {
                         System.out.println("Hotel list");
-                        System.out.println("name:-" + hotels.get(i).getName() + " " + "Rate:-" + hotels.get(i).getRates());
+                        System.out.println("name:-" + hotels.get(i).getName() + " " + "Week days Rate:-" + hotels.get(i).getWeekDayRates() +" " + "Weekend Rate:-" + hotels.get(i).getWeekEndRates());
                     }
                     break;
                 case 3:
-                    cheapestHotel(hotels);
-                    System.out.println("Cheapest hotel name:-" + hotelName + " " + "Cheapest Price :-" + cheapestPrice);
+                   hotelOps.cheapestHotel(hotels);
+                    System.out.println("Cheapest hotel name:-" + hotelOps.hotelName + " " + "Cheapest Price :-" + hotelOps.cheapestPrice);
                     break;
                 case 4:
                     operation = false;
