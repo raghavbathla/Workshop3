@@ -16,7 +16,7 @@ public class HotelReservation {
 
 
         while (operation) {
-            System.out.println("Enter 1 for add hotels or 2 for display or  3 for cheapest hotel or  4 for exit");
+            System.out.println("Enter 1 for add hotels or 2 for display or  3 for cheapest hotel or  4 for Best rated hotel or  5 for exit");
             int add = scanner.nextInt();
             switch (add) {
                 case 1:
@@ -32,16 +32,21 @@ public class HotelReservation {
                     scanner.nextLine();
                     break;
                 case 2:
-                    for (int i = 0; i < hotels.size(); i++) {
+                    for (Hotel hotel : hotels) {
                         System.out.println("Hotel list");
-                        System.out.println("name:-" + hotels.get(i).getName() + " " + "Week days Rate:-" + hotels.get(i).getWeekDayRates() +" " + "Weekend Rate:-" + hotels.get(i).getWeekEndRates());
+                        System.out.println("name:-" + hotel.getName() + " " + "Week days Rate:-" + hotel.getWeekDayRates() + " " + "Weekend Rate:-" + hotel.getWeekEndRates());
                     }
                     break;
                 case 3:
                    hotelOps.cheapestHotel(hotels);
                     System.out.println("Cheapest hotel name:-" + hotelOps.hotelName + " " + "Cheapest Price :-" + hotelOps.cheapestPrice + " " + "Ratings :-" + hotelOps.ratings);
                     break;
+
                 case 4:
+                    hotelOps.bestRated(hotels);
+                    System.out.println("Best Rated hotel name:-" + hotelOps.hotelName + " " + " Price :-" + hotelOps.cheapestPrice + " " + "Ratings :-" + hotelOps.ratings);
+                    break;
+                case 5:
                     operation = false;
                     break;
 
