@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class HotelReservationOperations {
     public String hotelName;
     public long cheapestPrice;
-
+public int ratings;
 
 
 
@@ -47,19 +47,26 @@ public class HotelReservationOperations {
                 weekDays -= 2;
             }
         }
-
         long weekends = numDays-weekDays;
         int index = 0;
         int cheapestRate = hotel.get(0).getWeekDayRates()+hotel.get(0).getWeekEndRates();
+
         for (int i = 0; i < hotel.size(); i++) {
             if (hotel.get(i).getWeekEndRates()+hotel.get(i).getWeekDayRates() < cheapestRate) {
                 cheapestRate = hotel.get(i).getWeekDayRates()+hotel.get(i).getWeekEndRates();
                 index = i;
             }
+            else if(hotel.get(i).getWeekEndRates()+hotel.get(i).getWeekDayRates() == cheapestRate){
+                if (hotel.get(i).getRatings()>hotel.get(index).getRatings()){
+                    cheapestRate = hotel.get(i).getWeekDayRates()+hotel.get(i).getWeekEndRates();
+                    index = i;
+                }
+            }
         }
+
         System.out.println(index+"index");
         hotelName = hotel.get(index).getName();
         cheapestPrice = hotel.get(index).getWeekDayRates() * weekDays+hotel.get(index).getWeekEndRates()*weekends;
-
+ratings = hotel.get(index).getRatings();
     }
 }

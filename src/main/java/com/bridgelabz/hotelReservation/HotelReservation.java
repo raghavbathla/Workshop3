@@ -1,7 +1,6 @@
 package com.bridgelabz.hotelReservation;
 
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -40,7 +39,7 @@ public class HotelReservation {
                     break;
                 case 3:
                    hotelOps.cheapestHotel(hotels);
-                    System.out.println("Cheapest hotel name:-" + hotelOps.hotelName + " " + "Cheapest Price :-" + hotelOps.cheapestPrice);
+                    System.out.println("Cheapest hotel name:-" + hotelOps.hotelName + " " + "Cheapest Price :-" + hotelOps.cheapestPrice + " " + "Ratings :-" + hotelOps.ratings);
                     break;
                 case 4:
                     operation = false;
